@@ -1,5 +1,5 @@
 import * as React from 'react';
-import IProductListItem from './ProductList';
+import { IProductListItem } from './ProductList';
 import './ProductListItem.scss';
 
 interface IProductListItemProps {
@@ -10,13 +10,13 @@ interface IProductListItemState {
 }
 
 export default class ProductListItem extends React.Component<IProductListItemProps, IProductListItemState> {
-    // constructor(props: IProductListItemProps) {
-    //     super(props);
-    // }
     public render() {
      return (
          <div className="product-list-item">
-             {this.props.productItem}
+             {this.props.productItem.title}
+             <p>
+                {this.props.productItem.text}
+             </p>
          </div>
      );
  }

@@ -6,7 +6,10 @@ export default class MainHeader extends React.Component {
         return (
             <header className="main-header">
                 <div className="main-header__inner">
-                    Header
+                    <nav>
+                        <a href="/">Главная</a>
+                        <a href="/login">Вход</a>
+                    </nav>
                 </div>
             </header>
         );
