@@ -11,4 +11,15 @@
     box-sizing: border-box;
     padding: 10px;
     padding-right: 0px;
+    position: relative;
+}
+
+.product-list__buttons {
+    position: absolute;
+    widows: 300px;
+    height: 40px;
+    bottom: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+
 }

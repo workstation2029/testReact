@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NavLink as Link } from 'react-router-dom';
 import "./MainHeader.scss"
 
 export default class MainHeader extends React.Component {
@@ -7,8 +8,8 @@ export default class MainHeader extends React.Component {
             <header className="main-header">
                 <div className="main-header__inner">
                     <nav>
-                        <a href="/">Главная</a>
-                        <a href="/login">Вход</a>
+                        <Link exact={true} to="/">Главная</Link>
+                        <Link to="/login">Вход</Link>
                     </nav>
                 </div>
             </header>
