@@ -13,12 +13,14 @@ interface IProductListItemState {
 
 export default class ProductListItem extends React.Component<IProductListItemProps, IProductListItemState> {
     public render() {
-    const id = this.props.productItem.id;
+    const id = this.props.productItem? this.props.productItem.id : 1;
+    const title = this.props.productItem? this.props.productItem.title : 1;
+    const text = this.props.productItem? this.props.productItem.text : 1;
     return (
         <Link to={"/product-description/"+id} className="product-list-item">
-            {this.props.productItem.title}
+            {title}
             <p>
-            {this.props.productItem.text}
+            {text}
             </p>
         </Link>
     );

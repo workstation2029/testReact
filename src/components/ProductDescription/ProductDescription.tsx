@@ -9,7 +9,7 @@ interface IProductDescriptionState {
     productList: IProductListItem[];
 };
 
-const mockProductList: IProductListItem[] = Array.from({ length: 16 }, (x, i) => ({
+const mockProductList: IProductListItem[] = Array.from({ length: 192 }, (x, i) => ({
     title: "Anya"+i, 
     text: "Fully-configurable"+i, 
     id: i
