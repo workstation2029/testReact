@@ -11,11 +11,10 @@ interface IProductDescriptionState {
 };
 
 export default class ProductDescription extends React.Component<IProductDescriptionProps, IProductDescriptionState> {
+    public productList: IProductListItem[];    
     constructor(props:any) {
         super(props) 
-        this.state = {
-            productList: mockProductList
-        };
+        this.productList = mockProductList;
     }
     public render() {
         const url = location.href;
@@ -23,8 +22,8 @@ export default class ProductDescription extends React.Component<IProductDescript
         const id = urlParts[urlParts.length - 1];
         console.log(id);
         console.log(id.toString);
-        const title = this.state.productList[id].title;
-        const text = this.state.productList[id].text;
+        const title = this.productList[id].title;
+        const text = this.productList[id].text;
         return (
             <div className="product-description">
                 <div className="product-description__img-wrap">{" "}</div>

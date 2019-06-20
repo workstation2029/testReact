@@ -16,12 +16,12 @@ export default class ProductListItem extends React.Component<IProductListItemPro
     const id = this.props.productItem? this.props.productItem.id : 1;
     const title = this.props.productItem? this.props.productItem.title : 1;
     const text = this.props.productItem? this.props.productItem.text : 1;
+    const productImg = this.props.productItem.img;
     return (
         <Link to={"/product-description/"+id} className="product-list-item">
-            {title}
-            <p>
-            {text}
-            </p>
+            <img src={productImg} alt="" className="product-list-item__img"/>
+            <h2>{title}</h2>
+            <p>{text}</p>
         </Link>
     );
  }

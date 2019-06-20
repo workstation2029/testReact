@@ -8,6 +8,7 @@ interface IProductListProps {
 }
 
 export interface IProductListItem {
+    img: string;
     title: string;
     text: string;
     id: number;
@@ -36,19 +37,27 @@ export default class ProductList extends React.Component<IProductListProps, IPro
      */
     public amountRanges: number;
 
+    public products: IProductListItem[];
+
     constructor(props: IProductListProps) {
         super(props);
-        this.state = {products: mockProductList};
-        this.amountPage = this.state.products.length / this.maxCountItem;
+        this.products = mockProductList;
+        this.amountPage = this.products.length / this.maxCountItem;
         this.amountRanges = Math.ceil(this.amountPage / this.maxAmountPage);
     }
     public renderProductList(numberPage: number) {
         if (!(numberPage > 0)) { return null; }
         const productsOnPage = [];
+        /**
+         * id первого элемента на странице
+         */
         const firstItem = this.maxCountItem*(numberPage)-this.maxCountItem;
+        /**
+         * id второго элемента на странице
+         */
         const lastItem = this.maxCountItem*(numberPage);
-        for (let i = firstItem; i < lastItem && i < this.state.products.length; i++) {
-            const item = this.state.products[i];
+        for (let i = firstItem; i < lastItem && i < this.products.length; i++) {
+            const item = this.products[i];
             productsOnPage.push(
                 <ProductListItem productItem={item} key={i}/>
             );

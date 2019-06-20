@@ -27,16 +27,19 @@
 }
 
 .button-toggle-page {
-    display: block;
-    width: 18px;
-    height: 18px;
-    color: #754;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    color: #fff;
     margin-right: 10px;
-    box-shadow: 1px 1px 10px #754;
+    box-shadow: 1px 1px 10px #768;
     text-decoration: none;
     border-radius: 50%;
+    background: #768;
+    align-items: center;
+    justify-content: center;
     &.active {
-        color: #738;
+        box-shadow: 1px 1px 10px #754;
         transform: scale(1.4);
     }
 }

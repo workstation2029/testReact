@@ -11,4 +11,23 @@
         transform: scale(1.1);
         box-shadow: 1px 1px 10px #737;
     }
+    &:nth-child(2n) .product-list-item__img{
+        animation: img-rotate-revers infinite 40s linear;
+    }
+}
+
+.product-list-item__img { 
+    height: 70px;
+    width: 70px;
+    animation: img-rotate infinite 40s linear;
+}
+
+@keyframes img-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes img-rotate-revers {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
 }
