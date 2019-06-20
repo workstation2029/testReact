@@ -3,5 +3,12 @@
     min-height: 30%;
     margin-right: 10px;
     margin-top: 10px;
-    background: #fff; 
+    background: #fff;
+    color: #754;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 1px 1px 10px #737;
+    }
 }

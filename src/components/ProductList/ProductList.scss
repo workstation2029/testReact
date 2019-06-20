@@ -16,10 +16,28 @@
 
 .product-list__buttons {
     position: absolute;
-    widows: 300px;
+    width: 300px;
     height: 40px;
     bottom: -42px;
     left: 50%;
     transform: translateX(-50%);
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.button-toggle-page {
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: #754;
+    margin-right: 10px;
+    box-shadow: 1px 1px 10px #754;
+    text-decoration: none;
+    border-radius: 50%;
+    &.active {
+        color: #738;
+        transform: scale(1.4);
+    }
+}
+

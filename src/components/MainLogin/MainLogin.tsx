@@ -29,7 +29,6 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
             login: "", 
             password: "",
             userID: 1
-            
         };
         this.onChangeLogin=this.onChangeLogin.bind(this);
         this.onChangePassword=this.onChangePassword.bind(this);

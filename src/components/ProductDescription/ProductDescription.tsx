@@ -1,4 +1,5 @@
 import * as React from 'react';
+import mockProductList from 'src/models/mockProductList';
 import { IProductListItem } from '../ProductList/ProductList';
 import './ProductDescription.scss';
 
@@ -8,12 +9,6 @@ interface IProductDescriptionProps {
 interface IProductDescriptionState {
     productList: IProductListItem[];
 };
-
-const mockProductList: IProductListItem[] = Array.from({ length: 192 }, (x, i) => ({
-    title: "Anya"+i, 
-    text: "Fully-configurable"+i, 
-    id: i
-}));
 
 export default class ProductDescription extends React.Component<IProductDescriptionProps, IProductDescriptionState> {
     constructor(props:any) {
