@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import mockProductList from 'src/models/mockProductList';
+import Search from '../Search/Search';
 import './ProductList.scss';
 import ProductListItem from './ProductListItem';
 
@@ -42,10 +43,19 @@ export default class ProductList extends React.Component<IProductListProps, IPro
     constructor(props: IProductListProps) {
         super(props);
         this.products = mockProductList;
-        this.amountPage = this.products.length / this.maxCountItem;
-        this.amountRanges = Math.ceil(this.amountPage / this.maxAmountPage);
+        this.state = {products: this.products};
+        this.searchElements = this.searchElements.bind(this);
+        this.amountPage = Math.ceil(this.state.products.length / this.maxCountItem);
+        // this.amountRanges = Math.ceil(this.amountPage / this.maxAmountPage);
     }
-    public renderProductList(numberPage: number) {
+    /**
+     * Изменяет состояние продуктов (отображает продукты соответствующие строке поиска)
+     */
+    public searchElements(products: IProductListItem[]) {
+        console.log(products);
+        this.setState({products});
+    }
+    public renderProductList(numberPage: number, products: IProductListItem[]) {
         if (!(numberPage > 0)) { return null; }
         const productsOnPage = [];
         /**
@@ -53,11 +63,11 @@ export default class ProductList extends React.Component<IProductListProps, IPro
          */
         const firstItem = this.maxCountItem*(numberPage)-this.maxCountItem;
         /**
-         * id второго элемента на странице
+         * id последнего элемента на странице
          */
         const lastItem = this.maxCountItem*(numberPage);
-        for (let i = firstItem; i < lastItem && i < this.products.length; i++) {
-            const item = this.products[i];
+        for (let i = firstItem; i < lastItem && i < products.length; i++) {
+            const item = products[i];
             productsOnPage.push(
                 <ProductListItem productItem={item} key={i}/>
             );
@@ -75,14 +85,18 @@ export default class ProductList extends React.Component<IProductListProps, IPro
          */
         const lastNumber = numberPage + 4;
         /**
+         * количество страни по 12 элементов (нужно округлять в большую сторону так как появится дробные страницы)
+         */
+        const amountPage = Math.ceil(this.state.products.length / this.maxCountItem);
+        /**
          * проверка что страницы с индексом 0 и меньше не существует
          */
         if (!(numberPage > 0)) { return null; }
         /**
          * отображение кнопок перехода если страниц меньше 9
          */
-        if (this.amountPage <= 8) {
-            for (let i = 1; i <= this.amountPage; i++) {
+        if (amountPage <= 8) {
+            for (let i = 1; i <= amountPage; i++) {
                 button.push(
                             <Link to={"/product-list/"+ Number(i)} className="button-toggle-page" activeClassName="active">{i}</Link>
                         );
@@ -92,11 +106,11 @@ export default class ProductList extends React.Component<IProductListProps, IPro
         /**
          * отображение кнопок перехода для последних 8ми страниц
          */
-        if (numberPage > (this.amountPage - this.maxAmountPage)) {
+        if (numberPage > (amountPage - this.maxAmountPage)) {
             button.push(
                 <Link to={"/product-list/1"} className="button-toggle-page" activeClassName="active">{"<"}</Link>
             );
-            for (let i = this.amountPage - this.maxAmountPage; i <= this.amountPage; i++) {
+            for (let i = amountPage - this.maxAmountPage; i <= amountPage; i++) {
                 button.push(
                             <Link to={"/product-list/"+ Number(i)} className="button-toggle-page" activeClassName="active">{i}</Link>
                         );
@@ -113,7 +127,7 @@ export default class ProductList extends React.Component<IProductListProps, IPro
                         );
             }
             button.push(
-                <Link to={"/product-list/"+this.amountPage} className="button-toggle-page" activeClassName="active">{">"}</Link>
+                <Link to={"/product-list/"+amountPage} className="button-toggle-page" activeClassName="active">{">"}</Link>
             );
             return button;
         }
@@ -124,13 +138,13 @@ export default class ProductList extends React.Component<IProductListProps, IPro
             button.push(
                 <Link to={"/product-list/1"} className="button-toggle-page" activeClassName="active">{"<"}</Link>
             );
-            for (let i = firstNumber; i < lastNumber && i <= this.amountPage; i++) {
+            for (let i = firstNumber; i < lastNumber && i <= amountPage; i++) {
                 button.push(
                             <Link to={"/product-list/"+ Number(i)} className="button-toggle-page" activeClassName="active">{i}</Link>
                         );
             }
             button.push(
-                <Link to={"/product-list/"+this.amountPage} className="button-toggle-page" activeClassName="active">{">"}</Link>
+                <Link to={"/product-list/"+amountPage} className="button-toggle-page" activeClassName="active">{">"}</Link>
             );
             return button;
         }
@@ -143,10 +157,12 @@ export default class ProductList extends React.Component<IProductListProps, IPro
         const numberPage = +urlParts[urlParts.length - 1];
         return (
             <main className="product-list">
-                {this.renderProductList(numberPage)}
+                {this.renderProductList(numberPage, this.state.products)}
                 <div className="product-list__buttons">
                     {this.renderNumberPage(numberPage)}
                 </div>
+                <Search products={this.products} 
+                        setters={this.searchElements}/>
             </main>
         );
     };
