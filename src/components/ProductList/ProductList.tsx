@@ -37,7 +37,9 @@ export default class ProductList extends React.Component<IProductListProps, IPro
      * колличество дапазанов (по maxAmountPage)
      */
     public amountRanges: number;
-
+    /**
+     * Отображаемые продуцкты
+     */
     public products: IProductListItem[];
 
     constructor(props: IProductListProps) {
@@ -46,7 +48,6 @@ export default class ProductList extends React.Component<IProductListProps, IPro
         this.state = {products: this.products};
         this.searchElements = this.searchElements.bind(this);
         this.amountPage = Math.ceil(this.state.products.length / this.maxCountItem);
-        // this.amountRanges = Math.ceil(this.amountPage / this.maxAmountPage);
     }
     /**
      * Изменяет состояние продуктов (отображает продукты соответствующие строке поиска)
@@ -54,6 +55,7 @@ export default class ProductList extends React.Component<IProductListProps, IPro
     public searchElements(products: IProductListItem[]) {
         console.log(products);
         this.setState({products});
+        console.log('Link');
     }
     public renderProductList(numberPage: number, products: IProductListItem[]) {
         if (!(numberPage > 0)) { return null; }

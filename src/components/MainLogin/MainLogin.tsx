@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { NavLink as Link } from 'react-router-dom';
 import './MainLogin.scss';
 interface IMainLoginProps {
     userList: IUserList;
     login: string;
     password: string;
 };
-export let isLogin: boolean = false;
+export let isLogin: boolean = Boolean(localStorage.getItem('login')) || false;
 interface IMainLoginState extends IUserList{
 
 };
@@ -50,6 +51,7 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
             </div>
         );
     };
+
     public onClickButtonLogin(e: React.SyntheticEvent<HTMLButtonElement>) {
         e.preventDefault();
         this.verification();
@@ -62,19 +64,20 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
         this.setState({password: e.target.value})
         console.dir(e.target.value);
     }
-    private verification() {
+    public verification() {
         const login = this.state.login;
         const password = this.state.password;
         if (login === mockUserList.login && password === mockUserList.password ) { 
             isLogin = true;
             alert('Hello');
-            // localStorage.setItem('login ' + this.state.userID, this.state.login);
-            // localStorage.setItem('password ' + this.state.userID, this.state.password);
-            // alert('Hello');
-            // localStorage.removeItem('login ' + this.state.userID);
+            localStorage.setItem('login ' + this.state.userID, this.state.login);
+            localStorage.setItem('password' + this.state.userID, this.state.password);
+            localStorage.setItem('login', 'true');
+            return (<Link to="/" />);
         } else {
-            isLogin = false;
+            localStorage.setItem('login', '');
             alert('Vali');
+            return (<Link to="/login" />);
         }
         
     };
