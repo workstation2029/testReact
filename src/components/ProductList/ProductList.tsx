@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, Redirect } from 'react-router-dom';
 import mockProductList from 'src/models/mockProductList';
 import Search from '../Search/Search';
 import './ProductList.scss';
@@ -41,6 +41,7 @@ export default class ProductList extends React.Component<IProductListProps, IPro
      * Отображаемые продуцкты
      */
     public products: IProductListItem[];
+    public isSearch: boolean;
 
     constructor(props: IProductListProps) {
         super(props);
@@ -53,9 +54,9 @@ export default class ProductList extends React.Component<IProductListProps, IPro
      * Изменяет состояние продуктов (отображает продукты соответствующие строке поиска)
      */
     public searchElements(products: IProductListItem[]) {
-        console.log(products);
         this.setState({products});
-        console.log('Link');
+        this.isSearch = true;
+        // return (<Redirect exact={true} to="/" />);
     }
     public renderProductList(numberPage: number, products: IProductListItem[]) {
         if (!(numberPage > 0)) { return null; }
@@ -154,9 +155,14 @@ export default class ProductList extends React.Component<IProductListProps, IPro
         return button;
     }
     public render() {
+        if (this.isSearch) {
+            this.isSearch = false;
+            return <Redirect from="/product-list" to="/product-list/1" />;
+        }
         const url = location.href;
         const urlParts = url.split('/');
         const numberPage = +urlParts[urlParts.length - 1];
+        
         return (
             <main className="product-list">
                 {this.renderProductList(numberPage, this.state.products)}

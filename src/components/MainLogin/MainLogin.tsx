@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { NavLink as Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import LoginContext from 'src/context/LoginContext';
 import './MainLogin.scss';
+
 
 interface IMainLoginProps {
     userList: IUserList;
@@ -26,6 +27,7 @@ const mockUserList: IUserList = {
 
 export default class MainLogin extends React.Component<IMainLoginProps, IMainLoginState> {
     public static contextType = LoginContext;
+    // public isVerification = this.context.login;
     constructor(props: IMainLoginProps) {
         super(props);
         this.state = {
@@ -39,6 +41,9 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
     }
 
     public render() {
+        if (this.context.login) {
+           return <Redirect exact={true} from="/login" to="/product-list/1" />;
+        }
         return (
             <div className="login">
                 <form className="login__form">
@@ -71,16 +76,14 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
         const password = this.state.password;
         if (login === mockUserList.login && password === mockUserList.password ) { 
             this.context.login = true;
-            alert('Hello');
             localStorage.setItem('login ' + this.state.userID, this.state.login);
             localStorage.setItem('password' + this.state.userID, this.state.password);
             localStorage.setItem('login', 'true');
-            return (<Link to="/" />);
+            document.location.reload();
         } else {
             this.context.login = false;
             localStorage.setItem('login', '');
             alert('Vali');
-            return (<Link to="/login" />);
         }
         
     };

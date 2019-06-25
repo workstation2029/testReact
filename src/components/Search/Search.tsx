@@ -28,7 +28,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         e.preventDefault();
         const searchValue = this.state.searchValue;
 // tslint:disable-next-line: no-bitwise
-        const products =this.props.products.filter((item)=>(~item.title.indexOf(searchValue)));
+        const products = this.props.products.filter((item)=>(~item.title.indexOf(searchValue)));
         this.props.setters(products);
     }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import LoginContext from 'src/context/LoginContext';
+import LoginContext from '../../context/LoginContext';
 import "./MainHeader.scss"
 
 export default class MainHeader extends React.Component {
@@ -8,6 +8,8 @@ export default class MainHeader extends React.Component {
     public onClickButtonExit(e: React.SyntheticEvent<HTMLButtonElement>) {
         e.preventDefault();
         localStorage.clear();
+        document.location.reload();
+        this.context.login = false;
     }
     
     public render() {
@@ -21,7 +23,7 @@ export default class MainHeader extends React.Component {
                     <button onClick={this.onClickButtonExit}>Выход</button>
                 </nav>
         );
-    } else {
+        } else {
             headerNavigation = (
                 <nav>
                     <Link exact={true} to="/">Главная</Link>

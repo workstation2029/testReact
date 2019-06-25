@@ -12,11 +12,14 @@ export default class Root extends React.Component {
     public render() {
         const isLogin = Boolean(localStorage.getItem('login')) || false;
         let mainPage: JSX.Element;
+        let mainPage2: JSX.Element | null = null;
+        const err = () => {alert('404')};
         if (isLogin) {
             mainPage = <Redirect exact={true} from="/" to="/product-list/1" />
             console.dir(isLogin);
         } else {
-            mainPage = <Redirect exact={true} from="/" to="/login" />
+            mainPage = <Redirect exact={true} from="/" to="/login" />;
+            mainPage2 = <Redirect exact={true} from="/product-list/:id" to="/" />
             console.dir(isLogin);
         } 
         return (
@@ -25,10 +28,11 @@ export default class Root extends React.Component {
                 <MainHeader />
                 <Switch>
                     {mainPage}
-                    <Route exact={true} path="/" component={MainLogin} />
+                    {mainPage2}
                     <Route exact={true} path="/login" component={MainLogin} />
                     <Route exact={true} path="/product-description/:id" component={ProductDescription} />
                     <Route exact={true} path="/product-list/:page" component={ProductList} />
+                    <Route exact={true} path="/product-list/:page" children={err} />
                 </Switch>
                 <MainFooter />
             </LoginContext.Provider>
