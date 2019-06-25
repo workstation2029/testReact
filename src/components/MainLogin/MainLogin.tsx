@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { NavLink as Link } from 'react-router-dom';
+import LoginContext from 'src/context/LoginContext';
 import './MainLogin.scss';
+
 interface IMainLoginProps {
     userList: IUserList;
     login: string;
     password: string;
 };
-export let isLogin: boolean = Boolean(localStorage.getItem('login')) || false;
-interface IMainLoginState extends IUserList{
 
+interface IMainLoginState extends IUserList{
 };
 
 interface IUserList {
@@ -24,6 +25,7 @@ const mockUserList: IUserList = {
 };
 
 export default class MainLogin extends React.Component<IMainLoginProps, IMainLoginState> {
+    public static contextType = LoginContext;
     constructor(props: IMainLoginProps) {
         super(props);
         this.state = {
@@ -68,13 +70,14 @@ export default class MainLogin extends React.Component<IMainLoginProps, IMainLog
         const login = this.state.login;
         const password = this.state.password;
         if (login === mockUserList.login && password === mockUserList.password ) { 
-            isLogin = true;
+            this.context.login = true;
             alert('Hello');
             localStorage.setItem('login ' + this.state.userID, this.state.login);
             localStorage.setItem('password' + this.state.userID, this.state.password);
             localStorage.setItem('login', 'true');
             return (<Link to="/" />);
         } else {
+            this.context.login = false;
             localStorage.setItem('login', '');
             alert('Vali');
             return (<Link to="/login" />);

@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { isLogin } from '../MainLogin/MainLogin'
+import LoginContext from 'src/context/LoginContext';
 import "./MainHeader.scss"
 
 export default class MainHeader extends React.Component {
+    public static contextType = LoginContext;
     public onClickButtonExit(e: React.SyntheticEvent<HTMLButtonElement>) {
         e.preventDefault();
         localStorage.clear();
     }
     
     public render() {
+        const isLogin = this.context.login;
         this.onClickButtonExit = this.onClickButtonExit.bind(this);
         let headerNavigation: JSX.Element;
         if (isLogin) {

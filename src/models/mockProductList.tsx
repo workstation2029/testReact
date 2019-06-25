@@ -5,7 +5,7 @@ const name: string[] = [
     'Anya',
     'Jane',
     'Glory',
-    'dmitry',
+    'Dmitry',
     'Sergo',
     'Broot'
 ];
