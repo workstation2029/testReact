@@ -3,7 +3,6 @@ import { IProductListItem } from "../ProductList/ProductList";
 import './Search.scss';
 
 interface ISearchProps {
-    // onClickSearch: (evant:React.SyntheticEvent<HTMLButtonElement>) => void;
     products: IProductListItem[];
     setters: (a: IProductListItem[]) => void;
 }

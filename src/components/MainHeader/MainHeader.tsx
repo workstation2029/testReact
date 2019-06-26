@@ -16,6 +16,7 @@ export default class MainHeader extends React.Component {
         const isLogin = this.context.login;
         this.onClickButtonExit = this.onClickButtonExit.bind(this);
         let headerNavigation: JSX.Element;
+
         if (isLogin) {
             headerNavigation = (
                 <nav>
@@ -31,6 +32,7 @@ export default class MainHeader extends React.Component {
                 </nav>
             );
         }
+        
         return (
             <header className="main-header">
                 <div className="main-header__inner">
