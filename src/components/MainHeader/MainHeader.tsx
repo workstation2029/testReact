@@ -29,6 +29,7 @@ export default class MainHeader extends React.Component {
             headerNavigation = (
                 <nav>
                     <Link exact={true} to="/">Главная</Link>
+                    <Link exact={true} to="/registration-form">Регистрация</Link>
                     <Link to="/login">Вход</Link>
                 </nav>
             );

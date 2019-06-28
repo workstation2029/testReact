@@ -9,6 +9,7 @@ import MainLogin from "../MainLogin/MainLogin";
 import MainPage from "../MainPage/MainPage";
 import ProductDescription from "../ProductDescription/ProductDescription";
 import ProductList from "../ProductList/ProductList";
+import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
 export default class Root extends React.Component {
     public static contextType = LoginContext;
@@ -41,7 +42,7 @@ export default class Root extends React.Component {
                 <Switch>
                     {mainPage.map((item)=>item)}
                     <Route exact={true} path="/main" component={wrapperMainPage} />
-                    {/* <Route exact={true} path="/main" component={wrapperMainPage} /> */}
+                    <Route exact={true} path="/registration-form" component={RegistrationForm} />
                     <Route exact={true} children={<h2 className="error">Ошибка 404</h2>} />
                 </Switch>
                 <MainFooter />
