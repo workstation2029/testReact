@@ -37,7 +37,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
                 <input type="text" 
                         onChange={this.onChangeSearchValue}
                         defaultValue={this.state.searchValue}/>
-                <button onClick={this.onClickSearch}>Search</button>
+                <button onClick={this.onClickSearch}>Поиск</button>
             </form>
         );
     }

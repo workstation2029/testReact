@@ -21,6 +21,7 @@ export default class MainHeader extends React.Component {
             headerNavigation = (
                 <nav>
                     <Link exact={true} to="/">Главная</Link>
+                    <Link exact={true} to="/main">Информация</Link>
                     <button onClick={this.onClickButtonExit}>Выход</button>
                 </nav>
         );

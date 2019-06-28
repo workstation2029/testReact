@@ -41,6 +41,7 @@ export default class Root extends React.Component {
                 <Switch>
                     {mainPage.map((item)=>item)}
                     <Route exact={true} path="/main" component={wrapperMainPage} />
+                    {/* <Route exact={true} path="/main" component={wrapperMainPage} /> */}
                     <Route exact={true} children={<h2 className="error">Ошибка 404</h2>} />
                 </Switch>
                 <MainFooter />
