@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { IProductListItem } from './ProductList';
+import { IProductListItem } from '../ProductList';
 import './ProductListItem.scss';
 
 interface IProductListItemProps {
@@ -13,14 +13,14 @@ interface IProductListItemState {
 
 export default class ProductListItem extends React.Component<IProductListItemProps, IProductListItemState> {
     public render() {
-    const id = this.props.productItem? this.props.productItem.id : 1;
-    const title = this.props.productItem? this.props.productItem.title : 1;
-    const text = this.props.productItem? this.props.productItem.text : 1;
-    const productImg = this.props.productItem.img;
+    const id = this.props.productItem.id;
+    const name = this.props.productItem.name;
+    const text = this.props.productItem.lat + " " + this.props.productItem.lon;
+    const productImg = 'src/logo.svg';
     return (
         <Link to={"/product-description/"+id} className="product-list-item">
             <img src={productImg} alt="" className="product-list-item__img"/>
-            <h2>{title}</h2>
+            <h2>{name}</h2>
             <p>{text}</p>
         </Link>
     );

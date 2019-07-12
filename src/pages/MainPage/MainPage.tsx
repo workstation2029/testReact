@@ -1,4 +1,5 @@
 import * as React from "react";
+import "src/pages/MainPage/MainPage.scss";
 
 export interface IMainPageProps {
     advantagesItem: IItem[];
@@ -42,10 +43,10 @@ export default class MainPage extends React.Component<IMainPageProps, IMainPageS
         return (
             <main className="main-page">
                 <section className="advantages">
-                    {advantagesItem.map((item =>renderAdvantagesItem(item)))}
+                    {advantagesItem.map((item => renderAdvantagesItem(item)))}
                 </section>
                 <section className="information">
-                    {informationItem.map((item =>renderInformationItem(item)))}    
+                    {informationItem.map((item => renderInformationItem(item)))}    
                 </section>
             </main>
         );

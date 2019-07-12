@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IProductListItem } from "../ProductList/ProductList";
+import { IProductListItem } from "src/pages/ProductList/ProductList";
 import './Search.scss';
 
 interface ISearchProps {
@@ -27,7 +27,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         e.preventDefault();
         const searchValue = this.state.searchValue;
 // tslint:disable-next-line: no-bitwise
-        const products = this.props.products.filter((item)=>(~item.title.indexOf(searchValue)));
+        const products = this.props.products.filter((item)=>(~item.name.indexOf(searchValue)));
         this.props.setters(products);
     }
 

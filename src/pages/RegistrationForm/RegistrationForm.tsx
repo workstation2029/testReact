@@ -1,6 +1,5 @@
 import * as React from 'react';
 import 'src/components/RegistrationForm/RegistrationForm'
-import { string } from 'prop-types';
 
 interface IRegistrationFormProps {};
 
@@ -29,16 +28,25 @@ export default class RegistrationForm extends React.Component<IRegistrationFormP
     public render() {
         return (
             <form className="registration-form">
-                <input type="text" className="registration-form__item" value={this.state.user.login} onChange={this.onChangeFormItem}/>
-                <input type="text" className="registration-form__item" value={this.state.user.secondName}/>
-                <input type="password" className="registration-form__item" value={this.state.user.password}/>
+                <input 
+                    type="text" 
+                    className="registration-form__item" 
+                    defaultValue="Name" 
+                    onChange={this.onChangeName} ref="nameField"/>
+                <input 
+                    type="text" 
+                    className="registration-form__item"  
+                    defaultValue="SecondName" 
+                    onChange={this.onChangeSecondName} />
+                <input 
+                    type="password" 
+                    className="registration-form__item" 
+                    defaultValue="" 
+                    onChange={this.onChangePassword} />
             </form>
         );
     }
 
-    public onChangeFormItem(e:React.ChangeEvent<HTMLInputElement>):void {
-        // const Item = this.state.user[NameItem];
-        const user = this.state.user;
-        this.setState({user});
-    }
+    // public onChangeFormItem(e:React.ChangeEvent<HTMLInputElement>):void {
+    // }
 }

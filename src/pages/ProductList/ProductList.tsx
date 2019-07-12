@@ -1,22 +1,24 @@
+import Axios from 'axios'
 import * as React from 'react';
 import { NavLink as Link, Redirect } from 'react-router-dom';
-import mockProductList from 'src/models/mockProductList';
-import Search from '../Search/Search';
+import Search from 'src/components/Search/Search';
 import './ProductList.scss';
-import ProductListItem from './ProductListItem';
+import ProductListItem from './ProductListItem/ProductListItem';
 
 interface IProductListProps {
 }
 
 export interface IProductListItem {
-    img: string;
-    title: string;
-    text: string;
     id: number;
+    isFirstTerminalFor: string;
+    isSecondTerminalFor: string;
+    lat: number;
+    lon: number;
+    name: string;
 }
 
 interface IProductListState {
-    products: IProductListItem[];
+    products: IProductListItem[] | [];
 }
 
 
@@ -40,15 +42,23 @@ export default class ProductList extends React.Component<IProductListProps, IPro
     /**
      * Отображаемые продуцкты
      */
-    public products: IProductListItem[];
+    // public products: IProductListItem[];
     public isSearch: boolean;
-
+    public products: IProductListItem[];
     constructor(props: IProductListProps) {
         super(props);
-        this.products = mockProductList;
-        this.state = {products: this.products};
+        this.state = {products: []}
         this.searchElements = this.searchElements.bind(this);
-        this.amountPage = Math.ceil(this.state.products.length / this.maxCountItem);
+    }
+    public componentDidMount() {
+        Axios.get("http://busstop-api.vistar.su/busstop")
+        .then(response => {
+            console.log(response);
+            this.products = response.data;
+            this.setState({products: this.products});
+            this.amountPage = Math.ceil(this.state.products.length / this.maxCountItem);
+        })
+        .catch((err) => console.log('error'));
     }
     /**
      * Изменяет состояние продуктов (отображает продукты соответствующие строке поиска)
@@ -56,10 +66,9 @@ export default class ProductList extends React.Component<IProductListProps, IPro
     public searchElements(products: IProductListItem[]) {
         this.setState({products});
         this.isSearch = true;
-        // return (<Redirect exact={true} to="/" />);
     }
     public renderProductList(numberPage: number, products: IProductListItem[]) {
-        if (!(numberPage > 0)) { return null; }
+        if (!(numberPage > 0) || !products) { return null; }
         const productsOnPage = [];
         /**
          * id первого элемента на странице
@@ -159,6 +168,7 @@ export default class ProductList extends React.Component<IProductListProps, IPro
             this.isSearch = false;
             return <Redirect from="/product-list" to="/product-list/1" />;
         }
+
         const url = location.href;
         const urlParts = url.split('/');
         const numberPage = +urlParts[urlParts.length - 1];
