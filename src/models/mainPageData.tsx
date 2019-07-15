@@ -2,31 +2,31 @@
 const advantagesItem = [];
 
 advantagesItem.push({
-    title: '111111',
-    text: 'q'
+    title: 'Global Tactics Planner',
+    text: 'Central'
 });
 advantagesItem.push({
-    title: '22222',
-    text: 'q'
+    title: 'Product Directives Engineer',
+    text: 'Central'
 });
 advantagesItem.push({
-    title: '33333',
-    text: 'q'
+    title: 'Human Program Agent',
+    text: 'Central'
 });
 
 const informationItem = [];
 
 informationItem.push({
-    title: 'aaaa',
-    text: 'ggggggggg'
+    title: 'Dynamic',
+    text: 'Product Directives'
 });
 informationItem.push({
-    title: 'bbbb',
-    text: 'ggggggggg'
+    title: 'Dynamic',
+    text: 'Product Directives'
 });
 informationItem.push({
-    title: 'ccccc',
-    text: 'ggggggggg'
+    title: 'Dynamic',
+    text: 'Product Directives'
 });
 
 const mainPageData = {advantagesItem, informationItem};

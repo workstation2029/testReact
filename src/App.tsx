@@ -1,6 +1,6 @@
 import * as React from 'react';
+import Root from 'src/container/Root';
 import './App.scss';
-import Root from './components/container/Root';
 
 class App extends React.Component {
   public render() {

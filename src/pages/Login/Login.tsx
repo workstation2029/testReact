@@ -26,8 +26,6 @@ const mockUserList: IUserList = {
 };
 
 export default class Login extends React.Component<ILoginProps, ILoginState> {
-;
-;
 
     public static contextType = LoginContext;
     private loginInput: HTMLInputElement | null = null;

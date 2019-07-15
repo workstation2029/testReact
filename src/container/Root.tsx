@@ -5,10 +5,11 @@ import { IMainPageProps } from "src/pages/MainPage/MainPage"
 import MainPage from "src/pages/MainPage/MainPage";
 import ProductDescription from "src/pages/ProductDescription/ProductDescription";
 import ProductList from "src/pages/ProductList/ProductList";
-import mainPageData from "../../models/mainPageData"
-import MainLogin from "../../pages/Login/Login";
-import MainFooter from "../MainFooter/MainFooter";
-import MainHeader from "../MainHeader/MainHeader";
+import RegistrationForm from "src/pages/RegistrationForm/RegistrationForm";
+import MainFooter from "../components/MainFooter/MainFooter";
+import MainHeader from "../components/MainHeader/MainHeader";
+import mainPageData from "../models/mainPageData"
+import MainLogin from "../pages/Login/Login";
 
 export default class Root extends React.Component {
     public static contextType = LoginContext;
@@ -41,6 +42,7 @@ export default class Root extends React.Component {
                 <Switch>
                     {mainPage.map((item)=>item)}
                     <Route exact={true} path="/main" component={wrapperMainPage} />
+                    <Route exact={true} path="/registration-form" component={RegistrationForm} />
                     <Route exact={true} children={<h2 className="error">Ошибка 404</h2>} />
                 </Switch>
                 <MainFooter />
