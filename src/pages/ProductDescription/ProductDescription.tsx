@@ -1,4 +1,4 @@
-import Axios from 'axios';
+// import Axios from 'axios';
 import * as React from 'react';
 // import mockProductList from 'src/models/mockProductList';
 import { IProductListItem } from '../ProductList/ProductList';
@@ -27,14 +27,16 @@ export default class ProductDescription extends React.Component<IProductDescript
             }
         };
     }
-    public componentWillMount() {
+    public componentDidMount() {
         const url = location.href;
         const urlParts = url.split('/');
         const id = urlParts[urlParts.length - 1];
-        Axios.get("http://busstop-api.vistar.su/busstop/"+id)
+        fetch("http://busstop-api.vistar.su/busstop/"+id)
         .then(response => {
-            console.log(response);
-            this.setState({productItem: response.data});
+            return response.json();
+        })
+        .then((response)=> {
+            this.setState({productItem: response});
         })
         .catch(() => console.log('error'));
     }
